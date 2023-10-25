@@ -1,26 +1,29 @@
-from random import randint
-
-a = []
-for i in range(10):
-    a.append(randint(1, 10))
-a.sort()
-print(a)
-
-value = int(input())
-
-mid = len(a) // 2
-low = 0
-high = len(a) - 1
+def bubble_sort(lst):
+    for i in range(len(lst)-1):
+        for j in range(len(lst)-1):
+            if lst[j] > lst[j+1]:
+                lst[j], lst[j+1] = lst[j+1], lst[j]
+    return lst
 
 
-while a[mid] != value and low <= high:
-    if value > a[mid]:
-        low = mid + 1
-    else:
-        high = mid - 1
-    mid = (low + high) // 2
+print(bubble_sort([6, 1, 4, 2, 6, 9]))
 
-if low > high:
-    print("Элемент не найден")
-else:
-    print("Индекс элемента =", mid)
+
+def binary_search(lst, val):
+    n = len(lst)
+    left, right = 0, n - 1
+    while left <= right:
+        middle = (left + right) // 2
+        if lst[middle] == val:
+            print("Element found")
+            return middle
+        elif lst[middle] > val:
+            right = middle - 1
+        else:
+            left = middle + 1
+    print('Element wasn\'t found')
+    return -1
+
+
+print(binary_search([1, 3, 4, 6, 8, 9], 7))
+
